@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cheng81466 的个人主页</title>
+    <title>Cheng · 茶与哲思</title>
     <style>
         * {
             margin: 0;
@@ -11,8 +11,8 @@
             box-sizing: border-box;
         }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background: #f5f7fa;
+            font-family: -apple-system, "Noto Serif SC", "Microsoft YaHei", serif;
+            background: #f7f2eb; /* 老纸色底 */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -22,98 +22,136 @@
         }
         .card {
             background: #ffffff;
-            border-radius: 24px;
-            box-shadow: 0 20px 40px -12px rgba(0,0,0,0.1);
+            border-radius: 32px;
+            box-shadow: 0 20px 40px -12px rgba(100, 70, 40, 0.15);
             padding: 48px 40px;
-            max-width: 500px;
+            max-width: 520px;
             width: 100%;
             text-align: center;
+            border: 1px solid #ede6dc;
             transition: transform 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-4px);
         }
         .avatar {
             width: 120px;
             height: 120px;
             border-radius: 50%;
-            background: #e0e7ff;
+            background: #d6c9b7; /* 茶汤色 */
             margin: 0 auto 24px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 48px;
-            color: #4f46e5;
+            font-size: 52px;
+            color: #4a3728;
+            border: 3px solid #fff3e6;
         }
         h1 {
-            font-size: 28px;
-            font-weight: 700;
-            color: #111827;
-            margin-bottom: 8px;
+            font-size: 30px;
+            font-weight: 600;
+            color: #3d2c1e;
+            letter-spacing: 6px;
+            margin-bottom: 6px;
         }
-        .title {
-            font-size: 18px;
-            color: #4f46e5;
-            font-weight: 500;
-            margin-bottom: 16px;
+        .sub {
+            font-size: 16px;
+            color: #8b7355;
+            letter-spacing: 4px;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+        .divider {
+            width: 40px;
+            height: 2px;
+            background: #c9b6a2;
+            margin: 16px auto;
         }
         .bio {
-            color: #4b5563;
-            line-height: 1.7;
-            margin-bottom: 28px;
+            color: #4d3a2a;
+            line-height: 1.9;
             font-size: 15px;
+            margin-bottom: 24px;
+        }
+        .bio strong {
+            color: #7a5d41;
+            font-weight: 600;
+        }
+        .quote {
+            font-size: 14px;
+            color: #8b7355;
+            font-style: italic;
+            border-top: 1px dashed #e0d5c8;
+            padding-top: 18px;
+            margin-bottom: 28px;
         }
         .links {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 10px;
         }
         .links a {
             display: block;
-            padding: 14px 20px;
-            background: #f3f4f6;
-            color: #111827;
+            padding: 12px 20px;
+            background: #f4efe8;
+            color: #3d2c1e;
             text-decoration: none;
             border-radius: 60px;
             font-weight: 500;
-            transition: all 0.2s;
+            font-size: 15px;
+            transition: all 0.25s;
+            border: 1px solid transparent;
         }
         .links a:hover {
-            background: #4f46e5;
-            color: #ffffff;
+            background: #3d2c1e;
+            color: #f7f2eb;
+            border-color: #3d2c1e;
             transform: translateY(-2px);
         }
         .footer {
-            margin-top: 32px;
-            font-size: 13px;
-            color: #9ca3af;
+            margin-top: 30px;
+            font-size: 12px;
+            color: #b8a692;
+            letter-spacing: 1px;
+        }
+        .footer span {
+            display: inline-block;
+            margin: 0 4px;
         }
     </style>
 </head>
 <body>
     <div class="card">
-        <!-- 头像区域（可改成你的 Emoji 或图片） -->
-        <div class="avatar">🧑‍💻</div>
+        <!-- 头像：可用茶壶或叶子 Emoji -->
+        <div class="avatar">🍃</div>
         
-        <!-- 1. 在这里改成你的名字 -->
-        <h1>Cheng81466</h1>
+        <!-- 名字（你的用户名） -->
+        <h1>Cheng81446</h1>
+        <div class="sub">· 茶 · 技 · 心 ·</div>
         
-        <!-- 2. 在这里改成你的身份标签 -->
-        <div class="title">🌱 酸面包职人 · 开发者</div>
+        <div class="divider"></div>
         
-        <!-- 3. 在这里改成你的个人简介 -->
+        <!-- 简介：茶与哲思 -->
         <div class="bio">
-            你好！我是 Cheng，<br>
-            热爱手工天然酵母面包，也爱捣鼓代码。<br>
-            欢迎交流合作 🤝
+            我是 <strong>Cheng</strong>，一名在代码与茶汤之间游走的行者。<br>
+            中国茶教会我 <strong>「静」</strong> —— 静观叶展，静听水沸，静待回甘。<br>
+            在每一泡的起落间，照见 <strong>简朴之美</strong> 与 <strong>无常之思</strong>。
         </div>
         
-        <!-- 4. 在这里改成你的社交链接 -->
+        <!-- 一句哲思引用 -->
+        <div class="quote">
+            "茶不过两种姿态：浮、沉；<br>
+            饮茶人不过两种姿势：拿起、放下。"
+        </div>
+        
+        <!-- 社交链接：保留 GitHub，可增加茶相关 -->
         <div class="links">
-            <a href="https://github.com/Cheng81466" target="_blank">🐙 GitHub 主页</a>
-            <!-- 如果你有微信公众号/小红书/邮箱，把下面这行 # 改成链接 -->
-            <a href="#" target="_blank">📮 联系我（点此加微信）</a>
+            <a href="https://github.com/Cheng81446" target="_blank">🐙 我的 GitHub 代码库</a>
+            <a href="#" target="_blank">🍵 茶事随笔（筹备中）</a>
         </div>
         
         <div class="footer">
-            © 2026 Cheng81466 · 用 ❤️ 和 🍞 制作
+            <span>☕</span> 以茶养心 · 以码修身 <span>☕</span>
         </div>
     </div>
 </body>
