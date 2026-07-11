@@ -25,7 +25,7 @@
             border-radius: 32px;
             box-shadow: 0 20px 40px -12px rgba(100, 70, 40, 0.15);
             padding: 48px 40px;
-            max-width: 520px;
+            max-width: 720px;
             width: 100%;
             text-align: center;
             border: 1px solid #ede6dc;
@@ -89,6 +89,7 @@
             display: flex;
             flex-direction: column;
             gap: 10px;
+            align-items: center;
         }
         .links a {
             display: block;
@@ -118,6 +119,60 @@
             display: inline-block;
             margin: 0 4px;
         }
+        /* 新增样式：分类与短文列表 */
+        .categories {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin: 12px 0 18px;
+        }
+        .tag {
+            padding: 8px 14px;
+            background: #fff3e6;
+            border-radius: 20px;
+            color: #3d2c1e;
+            text-decoration: none;
+            border: 1px solid #e9dccf;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        .posts {
+            text-align: left;
+            margin-top: 18px;
+        }
+        .posts h3 {
+            color: #3d2c1e;
+            margin-bottom: 8px;
+        }
+        .post-list { 
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .post-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 12px;
+            background: #fbf7f2;
+            border-radius: 12px;
+            text-decoration: none;
+            color: #3d2c1e;
+            border: 1px solid #efe6dc;
+        }
+        .post-title {
+            font-weight: 600;
+        }
+        .edit-link {
+            font-size: 13px;
+            color: #7a5d41;
+            text-decoration: none;
+            border: 1px dashed transparent;
+            padding: 6px 8px;
+            border-radius: 8px;
+            background: #fff;
+        }
+        .edit-link:hover { text-decoration: underline; }
     </style>
 </head>
 <body>
@@ -144,15 +199,78 @@
             饮茶人不过两种姿势：拿起、放下。"
         </div>
         
+        <!-- 分类（Tag） -->
+        <div class="categories">
+            <a class="tag" href="tea-reflection.md" target="_blank">🍵 茶事隨筆</a>
+            <!-- 如果将来有更多分类，可以在此添加 -->
+        </div>
+
         <!-- 社交链接：保留 GitHub，可增加茶相关 -->
         <div class="links">
             <a href="https://github.com/Cheng81446" target="_blank">🐙 我的 GitHub 代码库</a>
-            <a href="tea-reflection.md" target="_blank">🍵 茶事随笔</a>
+            <a href="tea-reflection.md" target="_blank">🍵 茶事随笔（页面）</a>
         </div>
         
+        <!-- 短文展示区域：会从 display-post 目录读取列表 -->
+        <div class="posts">
+            <h3>短文 / Display Posts</h3>
+            <div id="short-posts">正在加载短文…</div>
+        </div>
+
         <div class="footer">
             <span>☕</span> 以茶养心 · 以码修身 <span>☕</span>
         </div>
     </div>
+
+    <script>
+        // 读取仓库中 display-post 目录的文件并展示（公开仓库无需 token）
+        (function(){
+            const owner = 'Cheng81446';
+            const repo = 'Cheng81446.github.io';
+            const path = 'display-post';
+            const container = document.getElementById('short-posts');
+
+            fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${path}`)
+            .then(res => {
+                if (res.status === 404) throw new Error('目录不存在');
+                return res.json();
+            })
+            .then(files => {
+                if (!Array.isArray(files)) {
+                    container.innerHTML = '<p>无法读取 display-post 目录内容。</p>';
+                    return;
+                }
+                const mdFiles = files.filter(f => f.type === 'file' && /\.(md|markdown|html)$/i.test(f.name));
+                if (mdFiles.length === 0) {
+                    container.innerHTML = '<p>display-post 目录目前没有短文。你可以通过 GitHub 在 display-post/ 下添加 .md 文件来发布短文。</p>';
+                    return;
+                }
+                mdFiles.sort((a,b)=>b.name.localeCompare(a.name));
+                const list = document.createElement('div');
+                list.className = 'post-list';
+                mdFiles.forEach(f => {
+                    const nameNoExt = f.name.replace(/\.(md|markdown|html)$/i, '');
+                    // 站点上可能会把 markdown 渲染为 /display-post/<slug>.html 或 /display-post/<slug>/，
+                    // 我们使用相对路径 /display-post/{slug} 作为链接，若无法访问可改为直接打开 GitHub 编辑页面。
+                    const slug = encodeURIComponent(nameNoExt);
+                    const postUrl = `/${path}/${slug}`;
+                    const editUrl = `https://github.com/${owner}/${repo}/edit/main/${path}/${encodeURIComponent(f.name)}`;
+
+                    const a = document.createElement('a');
+                    a.className = 'post-item';
+                    a.href = postUrl;
+                    a.target = '_blank';
+                    a.rel = 'noopener';
+                    a.innerHTML = `<div class="post-title">${nameNoExt.replace(/-/g,' ')}</div><div><a class="edit-link" href="${editUrl}" target="_blank">编辑</a></div>`;
+                    list.appendChild(a);
+                });
+                container.innerHTML = '';
+                container.appendChild(list);
+            })
+            .catch(err => {
+                container.innerHTML = `<p>读取短文失败：${err.message}</p>`;
+            });
+        })();
+    </script>
 </body>
 </html>
