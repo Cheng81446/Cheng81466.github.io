@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="茶事隨笔 - Cheng 关于茶文化的随笔与思考。">
+    <meta name="keywords" content="茶文化,随笔,茶道,茶叶,品茶">
+    <meta name="author" content="Cheng81446">
+    <meta name="theme-color" content="#3d2c1e">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="茶事隨笔 · Cheng">
+    <meta property="og:description" content="在茶汤中思考人生的点滴">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://cheng81446.github.io/tea-essays.html">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75'>🍃</text></svg>">
+    
+    <title>茶事隨笔 · Cheng</title>
+    
+    <style>
+        :root {
+            --primary-color: #3d2c1e;
+            --secondary-color: #7a5d41;
+            --accent-color: #d6c9b7;
+            --bg-light: #f7f2eb;
+            --bg-card: #ffffff;
+            --text-primary: #3d2c1e;
+            --text-secondary: #8b7355;
+            --border-color: #ede6dc;
+            --shadow: 0 20px 40px -12px rgba(100, 70, 40, 0.15);
+            
+            --dark-primary: #f7f2eb;
+            --dark-secondary: #e0d5c8;
+            --dark-bg: #1a1410;
+            --dark-card: #2a1f18;
+            --dark-text-primary: #f7f2eb;
+            --dark-text-secondary: #c9b6a2;
+            --dark-border: #3d2c1e;
+            --dark-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, "Noto Serif SC", "Microsoft YaHei", serif;
+            background: var(--bg-light);
+            color: var(--text-primary);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            line-height: 1.6;
+        }
+
+        body.dark-mode {
+            background: var(--dark-bg);
+            color: var(--dark-text-primary);
+        }
+
+        /* 顶部导航栏 */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(247, 242, 235, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(100, 70, 40, 0.08);
+        }
+
+        body.dark-mode .navbar {
+            background: rgba(26, 20, 16, 0.95);
+            border-bottom-color: var(--dark-border);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 20px;
+        }
+
+        .nav-logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: transform 0.2s;
+        }
+
+        body.dark-mode .nav-logo {
+            color: var(--dark-primary);
+        }
+
+        .nav-logo:hover {
+            transform: translateY(-2px);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        body.dark-mode .nav-menu a {
+            color: var(--dark-text-secondary);
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        body.dark-mode .nav-menu a::after {
+            background: var(--dark-primary);
+        }
+
+        .nav-menu a:hover {
+            color: var(--primary-color);
+        }
+
+        body.dark-mode .nav-menu a:hover {
+            color: var(--dark-primary);
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        .nav-controls {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .theme-toggle:hover {
+            background: rgba(61, 44, 30, 0.1);
+        }
+
+        body.dark-mode .theme-toggle:hover {
+            background: rgba(247, 242, 235, 0.1);
+        }
+
+        /* 主容器 */
+        .main-container {
+            flex: 1;
+            max-width: 900px;
+            margin: 0 auto;
+            width: 100%;
+            padding: 40px 20px;
+        }
+
+        /* 页面标题 */
+        .page-header {
+            text-align: center;
+            margin-bottom: 40px;
+            animation: slideDown 0.6s ease-out both;
+        }
+
+        .page-header h1 {
+            font-size: 42px;
+            font-weight: 700;
+            color: var(--primary-color);
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+
+        body.dark-mode .page-header h1 {
+            color: var(--dark-primary);
+        }
+
+        .page-header .subtitle {
+            font-size: 16px;
+            color: var(--text-secondary);
+            font-style: italic;
+            letter-spacing: 1px;
+        }
+
+        body.dark-mode .page-header .subtitle {
+            color: var(--dark-text-secondary);
+        }
+
+        .divider {
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+            margin: 20px auto;
+        }
+
+        /* 短文列表 */
+        .essays-list {
+            display: grid;
+            gap: 24px;
+            animation: slideDown 0.6s ease-out 0.2s both;
+        }
+
+        .essay-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 32px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: var(--text-primary);
+            box-shadow: 0 2px 8px rgba(100, 70, 40, 0.08);
+        }
+
+        body.dark-mode .essay-card {
+            background: var(--dark-card);
+            border-color: var(--dark-border);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .essay-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(100, 70, 40, 0.2);
+            border-color: var(--primary-color);
+        }
+
+        body.dark-mode .essay-card:hover {
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+            border-color: var(--dark-primary);
+        }
+
+        .essay-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 16px;
+        }
+
+        .essay-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-color);
+            transition: all 0.3s ease;
+        }
+
+        body.dark-mode .essay-title {
+            color: var(--dark-primary);
+        }
+
+        .essay-card:hover .essay-title {
+            color: var(--secondary-color);
+        }
+
+        body.dark-mode .essay-card:hover .essay-title {
+            color: var(--accent-color);
+        }
+
+        .essay-date {
+            font-size: 13px;
+            color: var(--text-secondary);
+            white-space: nowrap;
+        }
+
+        body.dark-mode .essay-date {
+            color: var(--dark-text-secondary);
+        }
+
+        .essay-excerpt {
+            font-size: 15px;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            font-style: italic;
+        }
+
+        body.dark-mode .essay-excerpt {
+            color: var(--dark-text-secondary);
+        }
+
+        .essay-meta {
+            display: flex;
+            gap: 16px;
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        body.dark-mode .essay-meta {
+            color: var(--dark-text-secondary);
+        }
+
+        .read-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 12px;
+            padding: 8px 16px;
+            background: rgba(61, 44, 30, 0.05);
+            border-radius: 8px;
+            color: var(--primary-color);
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        body.dark-mode .read-more {
+            background: rgba(247, 242, 235, 0.1);
+            color: var(--dark-primary);
+        }
+
+        .essay-card:hover .read-more {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        body.dark-mode .essay-card:hover .read-more {
+            background: var(--dark-primary);
+            color: var(--primary-color);
+        }
+
+        /* 返回首页 */
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: #f4efe8;
+            color: var(--primary-color);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            margin-bottom: 24px;
+        }
+
+        body.dark-mode .back-button {
+            background: var(--dark-border);
+            color: var(--dark-primary);
+        }
+
+        .back-button:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateX(-4px);
+        }
+
+        body.dark-mode .back-button:hover {
+            background: var(--dark-primary);
+            color: var(--primary-color);
+        }
+
+        /* 页脚 */
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 13px;
+            color: var(--text-secondary);
+            letter-spacing: 1px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        body.dark-mode .footer {
+            color: var(--dark-text-secondary);
+            border-top-color: var(--dark-border);
+        }
+
+        /* 动画 */
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .main-container {
+                padding: 24px 16px;
+            }
+
+            .page-header h1 {
+                font-size: 32px;
+            }
+
+            .essay-card {
+                padding: 24px;
+            }
+
+            .essay-title {
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-container {
+                padding: 16px 12px;
+            }
+
+            .page-header h1 {
+                font-size: 26px;
+            }
+
+            .essay-card {
+                padding: 16px;
+            }
+
+            .essay-title {
+                font-size: 18px;
+            }
+
+            .essay-excerpt {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 顶部导航 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">🍃 Cheng</a>
+            <ul class="nav-menu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="tea-essays.html">茶事隨笔</a></li>
+            </ul>
+            <div class="nav-controls">
+                <button class="theme-toggle" id="themeToggle" title="切换深色模式">🌙</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主内容 -->
+    <div class="main-container">
+        <a href="index.html" class="back-button">← 返回首页</a>
+
+        <div class="page-header">
+            <h1>茶事隨笔</h1>
+            <div class="subtitle">在茶汤中思考，在回甘中体悟</div>
+            <div class="divider"></div>
+        </div>
+
+        <div class="essays-list">
+            <!-- 短文卡片 1 -->
+            <a href="tea-essays/water-temperature.html" class="essay-card">
+                <div class="essay-header">
+                    <h2 class="essay-title">水温的讲究</h2>
+                    <span class="essay-date">2026.07.14</span>
+                </div>
+                <div class="essay-excerpt">
+                    "以前泡茶，全是开水一冲。后来才明白：绿茶怕烫，红茶喜滚，黑茶要闷。像极了不同性格的人……"
+                </div>
+                <div class="read-more">
+                    阅读全文 →
+                </div>
+            </a>
+
+            <!-- 短文卡片 2 -->
+            <a href="tea-essays/first-brew.html" class="essay-card">
+                <div class="essay-header">
+                    <h2 class="essay-title">第一泡倒掉吗？</h2>
+                    <span class="essay-date">2026.07.14</span>
+                </div>
+                <div class="essay-excerpt">
+                    "听人说第一泡要洗茶，可那第一口最香的香气，倒掉了多可惜。后来我明白了……"
+                </div>
+                <div class="read-more">
+                    阅读全文 →
+                </div>
+            </a>
+        </div>
+
+        <div class="footer">
+            <span>🍃</span> <span>·</span> <span>在静默中，体味人生的甘醇</span> <span>·</span> <span>🍃</span>
+        </div>
+    </div>
+
+    <script>
+        // 深色模式切换
+        const themeToggle = document.getElementById('themeToggle');
+        const htmlElement = document.documentElement;
+
+        // 从本地存储读取主题设置
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+            themeToggle.textContent = '☀️';
+        }
+
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            if (document.body.classList.contains('dark-mode')) {
+                localStorage.setItem('theme', 'dark');
+                themeToggle.textContent = '☀️';
+            } else {
+                localStorage.setItem('theme', 'light');
+                themeToggle.textContent = '🌙';
+            }
+        });
+    </script>
+</body>
+</html>
