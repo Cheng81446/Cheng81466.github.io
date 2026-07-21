@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="茶的起源与历史">
+  <title>茶的起源与历史 | Cheng81446</title>
+  <link rel="stylesheet" href="../assets/css/style.min.css">
+</head>
+<body>
+  <header>
+    <h1>茶的起源与历史</h1>
+    <nav>
+      <a href="../index.html">首页</a> |
+      <a href="tea-history.html">茶的起源</a>
+    </nav>
+  </header>
+
+  <main>
+    <article>
+      <h2>茶的起源</h2>
+      <p>茶树（Camellia sinensis）原产于中国西南与缅甸北部交界地区。传说在公元前2737年，神农氏在煮水时，几片茶叶飘入水中，发现其清香与提神效果，从此茶逐渐进入人们生活。[43dcd9a7-70db-4a1f-b0ae-981daa162054](https://en.wikipedia.org/wiki/History_of_tea?citationMarker=43dcd9a7-70db-4a1f-b0ae-981daa162054&citationId=1 "Wikipedia")</p>
+
+      <h2>茶的历史发展</h2>
+      <ul>
+        <li><strong>公元前二千年：</strong>云南地区开始以茶入药。[43dcd9a7-70db-4a1f-b0ae-981daa162054](https://en.wikipedia.org/wiki/History_of_tea?citationMarker=43dcd9a7-70db-4a1f-b0ae-981daa162054&citationId=1 "Wikipedia")</li>
+        <li><strong>公元3世纪：</strong>中国医师华佗在医学著作中记载茶饮。[43dcd9a7-70db-4a1f-b0ae-981daa162054](https://en.wikipedia.org/wiki/Tea?citationMarker=43dcd9a7-70db-4a1f-b0ae-981daa162054&citationId=2 "Wikipedia")</li>
+        <li><strong>唐代：</strong>茶成为日常饮品，陆羽撰写《茶经》。[43dcd9a7-70db-4a1f-b0ae-981daa162054](https://www.britannica.com/topic/tea-beverage?citationMarker=43dcd9a7-70db-4a1f-b0ae-981daa162054&citationId=3 "Britannica")</li>
+        <li><strong>16世纪：</strong>葡萄牙商人将茶引入欧洲。[43dcd9a7-70db-4a1f-b0ae-981daa162054](https://en.wikipedia.org/wiki/Tea?citationMarker=43dcd9a7-70db-4a1f-b0ae-981daa162054&citationId=2 "Wikipedia")</li>
+        <li><strong>17世纪：</strong>英国流行饮茶，并在印度、斯里兰卡推广种植。[43dcd9a7-70db-4a1f-b0ae-981daa162054](https://www.britannica.com/topic/tea-beverage?citationMarker=43dcd9a7-70db-4a1f-b0ae-981daa162054&citationId=3 "Britannica")</li>
+      </ul>
+    </article>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Cheng81446 | Powered by GitHub Pages</p>
+  </footer>
+</body>
+</html>
